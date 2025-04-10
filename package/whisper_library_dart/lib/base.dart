@@ -33,7 +33,7 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 import 'dart:async';
-
+import 'dart:io';
 import 'package:general_lib/dynamic_library/core.dart';
 
 /// Check Out: https://www.youtube.com/@GENERAL_DEV
@@ -68,6 +68,6 @@ abstract class WhisperLibraryBase implements WhisperLibraryBaseCore {
 
   /// Check Out: https://www.youtube.com/@GENERAL_DEV
   static String getLibraryWhisperPathDefault() {
-    return "libwhisper.so";
+    return Platform.isIOS ? "whisper.framework/whisper" : "libwhisper.so";
   }
 }

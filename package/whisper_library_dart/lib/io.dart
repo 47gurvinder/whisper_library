@@ -150,26 +150,10 @@ class WhisperLibrary extends WhisperLibraryBase {
     final whisperModelPathNative =
         WhisperLibrary._whisperModelPath.toNativeUtf8().cast<Char>();
     {
-      final whisperModelContext = WhisperLibrary._whisperModelContext;
-      if (whisperModelContext != nullptr) {
-        /// release memory
-        _whisperLibraryDartSharedBindingsByGeneralDeveloper.whisper_free(
-          whisperModelContext,
-        );
+      if (WhisperLibrary._whisperModelContext != nullptr) {
+        print("[Whisper] Native model already loaded, skipping duplicate load.");
+        return true; // Prevent crash from double init
       }
-    }
-
-    {
-      WhisperLibrary._whisperLibraryDartSharedBindingsByGeneralDeveloper
-          .whisper_log_set(
-        Pointer.fromFunction(ggmlLogCallbackFunction),
-        "log".toNativeUtf8().cast<Void>(),
-      );
-      WhisperLibrary._whisperLibraryDartSharedBindingsByGeneralDeveloper
-          .ggml_log_set(
-        Pointer.fromFunction(ggmlLogCallbackFunction),
-        "log".toNativeUtf8().cast<Void>(),
-      );
     }
 
     WhisperLibrary._whisperLibraryDartSharedBindingsByGeneralDeveloper
