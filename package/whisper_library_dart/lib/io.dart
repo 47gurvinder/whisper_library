@@ -377,6 +377,8 @@ class WhisperLibrary extends WhisperLibraryBase {
       WhisperLibrary._whisperLibraryDartSharedBindingsByGeneralDeveloper
           .whisper_free(whisperModelContext);
     }
+
+    _isEnsureInitialized = false;
   }
 
   /// Check Out: https://www.youtube.com/@GENERAL_DEV
